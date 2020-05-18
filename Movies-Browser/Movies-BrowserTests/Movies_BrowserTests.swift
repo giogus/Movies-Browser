@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Nimble
 @testable import Movies_Browser
 
 class Movies_BrowserTests: XCTestCase {
@@ -21,7 +22,7 @@ class Movies_BrowserTests: XCTestCase {
             isFavorite = state.isFavorite
         }
         viewModel.favoriteButtonWasTapped()
-        XCTAssert(isFavorite)
+        expect(isFavorite) == true
     }
 
     func testUnfavoriteActionInMovieDetail() {
@@ -32,18 +33,18 @@ class Movies_BrowserTests: XCTestCase {
         }
         viewModel.favoriteButtonWasTapped()
         viewModel.favoriteButtonWasTapped()
-        XCTAssert(!isFavorite)
+        expect(isFavorite) == false
     }
     
     func testDataPresentationOnMovieDetail() {
         let movie = Movie(id: 0, title: "Batman", releaseDate: "2020-04-20".dateFromText() ?? Date(), overview: "Lorem ipsum", genreIds: [], posterPath: "")
         let viewModel = MovieDetailViewModel(movie: movie, callback: nil)
         viewModel.callback = { [weak self] state in
-            XCTAssert(state.isFavorite == self?.database.isFavorited(id: movie.id))
-            XCTAssert(state.titleText == movie.title)
-            XCTAssert(state.descriptionText == movie.overview)
-            XCTAssert(state.releaseDateText == movie.releaseDate.year)
-            XCTAssert(state.genreListText == self?.database.getGenresListString(ids: movie.genreIds))
+            expect(state.isFavorite) == self?.database.isFavorited(id: movie.id)
+            expect(state.titleText) == movie.title
+            expect(state.descriptionText) == movie.overview
+            expect(state.releaseDateText) == movie.releaseDate.year
+            expect(state.genreListText) == self?.database.getGenresListString(ids: movie.genreIds)
         }
     }
 }
@@ -53,7 +54,7 @@ extension Movies_BrowserTests {
     func testClearFavoritesList(){
         database.clearFavoritesList()
         let favoritesList = database.getFavoritesList()
-        XCTAssert(favoritesList.isEmpty)
+        expect(favoritesList.isEmpty) == true
     }
     
     func testGetFavoritesListAfterAddingOneMovie(){
@@ -63,7 +64,8 @@ extension Movies_BrowserTests {
         database.addNewFavorite(movie: movie)
         
         let favoritesList = database.getFavoritesList()
-        XCTAssert(favoritesList.count == 1 && favoritesList[0] == movie)
+        expect(favoritesList.count) == 1
+        expect(favoritesList[0]) == movie
     }
     
     func testGetFavoritesListAfterRemovingOneMovie(){
@@ -75,10 +77,14 @@ extension Movies_BrowserTests {
         database.addNewFavorite(movie: secondMovie)
         
         var favoritesList = database.getFavoritesList()
-        XCTAssert(favoritesList.count == 2 && favoritesList[0] == firstMovie && favoritesList[1] == secondMovie)
+        expect(favoritesList.count) == 2
+        expect(favoritesList[0]) == firstMovie
+        expect(favoritesList[1]) == secondMovie
+        
         database.deleteFavorite(id: secondMovie.id)
         favoritesList = database.getFavoritesList()
-        XCTAssert(favoritesList.count == 1 && favoritesList[0] == firstMovie)
+        expect(favoritesList.count) == 1
+        expect(favoritesList[0]) == firstMovie
     }
 }
 
@@ -87,7 +93,7 @@ extension Movies_BrowserTests {
     func testClearGenresList(){
         database.clearGenresList()
         let genresList = database.getGenresList()
-        XCTAssert(genresList.isEmpty)
+        expect(genresList.isEmpty) == true
     }
     func testGetGenresListAfterAddingAListOfGenres(){
         let genresArray = [Genre(id: 0, name: "Action"), Genre(id: 1, name: "Comedy"), Genre(id: 2, name: "Romance")]
@@ -96,7 +102,8 @@ extension Movies_BrowserTests {
         database.setGenresList(genresList: genresArray)
         
         let genresList = database.getGenresList()
-        XCTAssert(genresList.count == 3 && genresList == genresArray)
+        expect(genresList.count) == 3
+        expect(genresList) == genresArray
     }
     func testGetGenresListString(){
         let genresArray = [Genre(id: 0, name: "Action"), Genre(id: 1, name: "Comedy"), Genre(id: 2, name: "Romance")]
@@ -106,8 +113,8 @@ extension Movies_BrowserTests {
         database.setGenresList(genresList: genresArray)
         let genresList = database.getGenresList()
         let genresListString = database.getGenresListString(ids: movie.genreIds)
-        XCTAssert(genresListString ==
-            "\(genresList.filter({ $0.id == movie.genreIds[0] }).first!.name), \(genresList.filter({ $0.id == movie.genreIds[1] }).first!.name)")
+        let correctString = "\(genresList.filter({ $0.id == movie.genreIds[0] }).first!.name), \(genresList.filter({ $0.id == movie.genreIds[1] }).first!.name)"
+        expect(genresListString) == correctString
     }
 }
 
@@ -115,22 +122,23 @@ extension Movies_BrowserTests {
 extension Movies_BrowserTests {
     func testGenresListRequest(){
         var genresList: GenresList?
-        let expectation = self.expectation(description: "GenresListRequest")
         
         Service.request(router: Router.getMoviesGenres) { (genres: GenresList?, success: Bool) in
             genresList = genres
-            expectation.fulfill()
         }
-        waitForExpectations(timeout: 5, handler: nil)
-        
         database.setGenresList(genresList: genresList?.genres ?? [])
-        XCTAssert(genresList != nil)
+        expect(genresList).toEventuallyNot(beNil())
     }
     
     func testGenresListPersistenceAfterRequest(){
-        testGenresListRequest()
-        let database = Database()
-        let genresList = database.getGenresList()
-        XCTAssert(genresList.count > 0)
+        waitUntil { [weak self] done in
+            Service.request(router: Router.getMoviesGenres) { (genresList: GenresList?, success: Bool) in
+                self?.database.setGenresList(genresList: genresList?.genres ?? [])
+                done()
+            }
+        }
+        
+        let genresArray = self.database.getGenresList()
+        expect(genresArray.count).toEventuallyNot(equal(0))
     }
 }
