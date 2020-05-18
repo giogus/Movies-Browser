@@ -7,7 +7,7 @@
 
 An app that uses the TMDB API to browse movies. 🎬
 
-<img src="https://github.com/giogus/Movies-Browser/blob/development/Screenshots/demo.gif?raw=true" data-canonical-src="https://github.com/giogus/Movies-Browser/blob/development/Screenshots/demo.gif?raw=true" height="500" />
+<img src="https://github.com/giogus/Movies-Browser/blob/master/Screenshots/demo.gif?raw=true" data-canonical-src="https://github.com/giogus/Movies-Browser/blob/master/Screenshots/demo.gif?raw=true" height="500" />
 
 ## Requirements
 
