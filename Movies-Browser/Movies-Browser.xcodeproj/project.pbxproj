@@ -55,6 +55,7 @@
 		A29C329A244A83960094677A /* Movies_BrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29C3299244A83960094677A /* Movies_BrowserUITests.swift */; };
 		A2FF935FCAED80B8FFB3B61C /* Pods_Movies_Browser_Movies_BrowserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A560D457CF53B9B2331F2205 /* Pods_Movies_Browser_Movies_BrowserUITests.framework */; };
 		B72B5DB2AFC9B55B380642A6 /* Pods_Movies_Browser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5116A9E9260BE886236EC02A /* Pods_Movies_Browser.framework */; };
+		C160FF61247326B200E90FE5 /* ListSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160FF60247326B200E90FE5 /* ListSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		A29C329B244A83960094677A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A560D457CF53B9B2331F2205 /* Pods_Movies_Browser_Movies_BrowserUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movies_Browser_Movies_BrowserUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D77F182B02B916272CBF05 /* Pods-Movies-Browser-Movies-BrowserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies-Browser-Movies-BrowserUITests.release.xcconfig"; path = "Target Support Files/Pods-Movies-Browser-Movies-BrowserUITests/Pods-Movies-Browser-Movies-BrowserUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C160FF60247326B200E90FE5 /* ListSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSpec.swift; sourceTree = "<group>"; };
 		C24C8646EE3A23A1C91DE6D1 /* Pods-Movies-Browser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies-Browser.debug.xcconfig"; path = "Target Support Files/Pods-Movies-Browser/Pods-Movies-Browser.debug.xcconfig"; sourceTree = "<group>"; };
 		C60D36C5DBCE0735E87A687A /* Pods-Movies-BrowserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies-BrowserTests.release.xcconfig"; path = "Target Support Files/Pods-Movies-BrowserTests/Pods-Movies-BrowserTests.release.xcconfig"; sourceTree = "<group>"; };
 		D170938292A7A5898470CC2F /* Pods-Movies-BrowserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies-BrowserTests.debug.xcconfig"; path = "Target Support Files/Pods-Movies-BrowserTests/Pods-Movies-BrowserTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 			children = (
 				A29C328E244A83960094677A /* Movies_BrowserTests.swift */,
 				A29C3290244A83960094677A /* Info.plist */,
+				C160FF60247326B200E90FE5 /* ListSpec.swift */,
 			);
 			path = "Movies-BrowserTests";
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C160FF61247326B200E90FE5 /* ListSpec.swift in Sources */,
 				A29C328F244A83960094677A /* Movies_BrowserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

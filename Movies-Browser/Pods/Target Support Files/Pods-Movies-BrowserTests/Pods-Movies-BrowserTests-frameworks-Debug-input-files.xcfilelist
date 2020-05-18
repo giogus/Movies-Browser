@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-Movies-BrowserTests/Pods-Movies-BrowserTests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework
+${BUILT_PRODUCTS_DIR}/Quick/Quick.framework
