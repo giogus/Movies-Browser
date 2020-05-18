@@ -477,6 +477,7 @@
 				A29C3286244A83960094677A /* Sources */,
 				A29C3287244A83960094677A /* Frameworks */,
 				A29C3288244A83960094677A /* Resources */,
+				BF15469612C679531249F29C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -661,6 +662,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF15469612C679531249F29C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Movies-BrowserTests/Pods-Movies-BrowserTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Movies-BrowserTests/Pods-Movies-BrowserTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Movies-BrowserTests/Pods-Movies-BrowserTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D6AC4FF891E828F1382A70FC /* [CP] Check Pods Manifest.lock */ = {
@@ -930,7 +948,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D170938292A7A5898470CC2F /* Pods-Movies-BrowserTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N8MAFJDDC5;
@@ -953,7 +970,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C60D36C5DBCE0735E87A687A /* Pods-Movies-BrowserTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N8MAFJDDC5;
@@ -976,7 +992,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC9010E1CF3100162F19CD6A /* Pods-Movies-Browser-Movies-BrowserUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N8MAFJDDC5;
 				INFOPLIST_FILE = "Movies-BrowserUITests/Info.plist";
@@ -998,7 +1013,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2D77F182B02B916272CBF05 /* Pods-Movies-Browser-Movies-BrowserUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N8MAFJDDC5;
 				INFOPLIST_FILE = "Movies-BrowserUITests/Info.plist";
